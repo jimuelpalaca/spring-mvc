@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="1" author="Jimuel">
+        <sql>
+            CREATE TABLE products (
+            id BIGINT NOT NULL AUTO_INCREMENT,
+            name VARCHAR(255),
+            price DOUBLE(10, 2),
+            created_at TIMESTAMP NOT NULL,
+            updated_at TIMESTAMP NOT NULL,
+            CONSTRAINT primary_key PRIMARY KEY (id)
+            )
+        </sql>
+        <rollback>
+            DROP TABLE products;
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
