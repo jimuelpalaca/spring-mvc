@@ -21,6 +21,11 @@ public class ProductService implements ProductServiceInterface {
     }
 
     @Override
+    public Product findById(Long id){
+        return productRepository.findById(id).get();
+    }
+
+    @Override
     public Product store(Product product) {
         Instant now = Instant.now();
 
@@ -32,13 +37,22 @@ public class ProductService implements ProductServiceInterface {
     }
 
     @Override
-    public Product update(Product product) {
-        return null;
+    public Product update(Long id, Product productRequest) {
+        Product product = productRepository.findById(id).get();
+
+        product.setName(productRequest.getName());
+        product.setPrice(productRequest.getPrice());
+        product.setCreated_at(product.getCreated_at());
+        product.setUpdated_at(Instant.now());
+
+        productRepository.save(product);
+
+        return product;
     }
 
     @Override
     public void destroy(Long id) {
-
+        productRepository.deleteById(id);
     }
 
     @Override

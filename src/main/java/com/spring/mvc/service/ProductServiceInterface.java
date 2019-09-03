@@ -8,9 +8,11 @@ public interface ProductServiceInterface {
 
     List<Product> get();
 
+    Product findById(Long id);
+
     Product store(Product product);
 
-    Product update(Product product);
+    Product update(Long id, Product product);
 
     void destroy(Long id);
 
