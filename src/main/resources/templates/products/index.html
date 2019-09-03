@@ -8,34 +8,37 @@
     <title>Product List</title>
 </head>
 <body>
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Created At</th>
-            <th>Updated At</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr align="center">
-            <a th:href="@{/products/create}">Create New Product</a>
-        </tr>
-        <tr th:each="product : ${products}">
-            <td th:text="${product.name}"></td>
-            <td th:text="${product.price}"></td>
-            <td th:text="${product.created_at}"></td>
-            <td th:text="${product.updated_at}"></td>
-            <td>
-                <a th:href="@{'/products/' + ${product.id} + '/edit'}">Edit</a>
-                <form th:action="@{'/products/' + ${product.id}}" method="post">
-                    <input type="hidden" name="_method" value="delete">
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+
+<form action="#" th:action="@{products}" method="get">
+    <input type="text" name="name" placeholder="Product Name">
+    <button type="submit">Search</button>
+</form>
+<a th:href="@{/products/create}"ß>Create New Product</a>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product: ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.created_at}"></td>
+        <td th:text="${product.updated_at}"></td>
+        <td>
+            <a th:href="@{'/products/' + ${product.id} + '/edit'}">Edit</a>
+            <form th:action="@{'/products/' + ${product.id}}" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

@@ -2,8 +2,12 @@ package com.spring.mvc.repository;
 
 import com.spring.mvc.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    public Product findByName(String name);
+    @Query(value = "SELECT * FROM products WHERE name LIKE %?1% ", nativeQuery = true)
+    List<Product> searchByName(String name);
 }

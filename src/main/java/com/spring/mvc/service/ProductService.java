@@ -16,7 +16,11 @@ public class ProductService implements ProductServiceInterface {
     private ProductRepository productRepository;
 
     @Override
-    public List<Product> get() {
+    public List<Product> get(String name) {
+        if (! name.equals("")) {
+            return productRepository.searchByName(name);
+        }
+
         return productRepository.findAll();
     }
 
