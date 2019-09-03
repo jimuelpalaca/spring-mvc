@@ -4,9 +4,9 @@ import com.spring.mvc.model.Product;
 
 import java.util.List;
 
-public interface ProductServiceInterface {
+public interface ResourceInterface {
 
-    List<Product> get(String name);
+    List<Product> all();
 
     Product findById(Long id);
 

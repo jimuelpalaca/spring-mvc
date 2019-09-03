@@ -9,19 +9,22 @@ import java.time.Instant;
 import java.util.List;
 
 @Service
-public class ProductService implements ProductServiceInterface {
-
+public class ProductService implements ResourceInterface {
 
     @Autowired
     private ProductRepository productRepository;
 
     @Override
-    public List<Product> get(String name) {
+    public List<Product> all() {
+        return productRepository.findAll();
+    }
+
+    public List<Product> searchByNameOrAll(String name) {
         if (! name.equals("")) {
             return productRepository.searchByName(name);
         }
 
-        return productRepository.findAll();
+        return this.all();
     }
 
     @Override

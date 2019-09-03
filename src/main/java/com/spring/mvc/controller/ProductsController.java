@@ -23,7 +23,7 @@ public class ProductsController {
 
     @GetMapping("/products")
     public ModelAndView index(@RequestParam(name = "name", defaultValue = "", required = false) String name) {
-        List<Product> products = productService.get(name);
+        List<Product> products = productService.searchByNameOrAll(name);
 
         return new ModelAndView("/products/index").addObject("products", products);
     }

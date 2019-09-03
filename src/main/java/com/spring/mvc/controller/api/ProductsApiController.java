@@ -17,6 +17,6 @@ public class ProductsApiController {
 
     @GetMapping("/api/products")
     public List<Product> index(@RequestParam(name = "name", defaultValue = "", required = false) String name) {
-        return productService.get(name);
+        return productService.searchByNameOrAll(name);
     }
 }
