@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query(value = "SELECT * FROM products WHERE name LIKE %?1% ", nativeQuery = true)
+    @Query(value = "SELECT * FROM products WHERE name LIKE %?% ", nativeQuery = true)
     List<Product> searchByName(String name);
 }
