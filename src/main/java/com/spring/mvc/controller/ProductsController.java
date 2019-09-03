@@ -21,14 +21,14 @@ public class ProductsController {
         return "redirect:/products";
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    @GetMapping("/products")
     public ModelAndView index() {
         List<Product> products = productService.get();
 
         return new ModelAndView("/products/index").addObject("products", products);
     }
 
-    @RequestMapping(name = "/products/create", method = RequestMethod.GET)
+    @GetMapping("/products/create")
     public String create(Model model) {
         Product product = new Product();
 
@@ -37,28 +37,28 @@ public class ProductsController {
         return "products/create";
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.POST)
+    @PostMapping("/products")
     public String store(@ModelAttribute("product") Product product) {
         productService.store(product);
 
         return "redirect:/products";
     }
 
-    @RequestMapping(value = "/products/{id}/edit", method = RequestMethod.GET)
+    @GetMapping("/products/{id}/edit")
     public ModelAndView edit(@PathVariable(name = "id") Long id) {
         Product product = productService.findById(id);
 
         return new ModelAndView("products/edit").addObject(product);
     }
 
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
+    @PutMapping("/products/{id}")
     public String update(@PathVariable(name = "id") Long id, @ModelAttribute("product") Product productRequest) {
         Product product = productService.update(id, productRequest);
 
         return "redirect:/products/" + product.getId() + "/edit";
     }
 
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/products/{id}")
     public String destroy(@PathVariable(name = "id") Long id) {
         productService.destroy(id);
 
