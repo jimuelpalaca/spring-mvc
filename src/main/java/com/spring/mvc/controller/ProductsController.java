@@ -25,7 +25,7 @@ public class ProductsController {
     public ModelAndView index(@RequestParam(name = "name", defaultValue = "", required = false) String name) {
         List<Product> products = productService.searchByNameOrAll(name);
 
-        return new ModelAndView("/products/index").addObject("products", products);
+        return new ModelAndView("/products/index", "products", products);
     }
 
     @GetMapping("/products/create")
