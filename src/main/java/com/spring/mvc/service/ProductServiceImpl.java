@@ -41,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product store(Product product) {
         Instant now = Instant.now();
-        Long id = new Long(1);
+        Long id = Long.valueOf(1);
         User user = userRepository.findById(id).get();
 
         product.setUser(user);
