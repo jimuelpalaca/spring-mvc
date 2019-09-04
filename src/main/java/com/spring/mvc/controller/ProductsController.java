@@ -1,7 +1,7 @@
 package com.spring.mvc.controller;
 
 import com.spring.mvc.model.Product;
-import com.spring.mvc.service.ProductService;
+import com.spring.mvc.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ProductsController {
 
     @Autowired
-    private ProductService productService;
+    private ProductServiceImpl productServiceImpl;
 
     @RequestMapping("/")
     public String home() {
@@ -23,7 +23,7 @@ public class ProductsController {
 
     @GetMapping("/products")
     public ModelAndView index(@RequestParam(name = "name", defaultValue = "", required = false) String name) {
-        List<Product> products = productService.searchByNameOrAll(name);
+        List<Product> products = productServiceImpl.searchByNameOrAll(name);
 
         return new ModelAndView("/products/index", "products", products);
     }
@@ -35,26 +35,26 @@ public class ProductsController {
 
     @PostMapping("/products")
     public String store(@ModelAttribute("product") Product product) {
-        productService.store(product);
+        productServiceImpl.store(product);
 
         return "redirect:/products";
     }
 
     @GetMapping("/products/{id}/edit")
     public ModelAndView edit(@PathVariable(name = "id") Long id) {
-        return new ModelAndView("products/edit", "product", productService.findById(id));
+        return new ModelAndView("products/edit", "product", productServiceImpl.findById(id));
     }
 
     @PutMapping("/products/{id}")
     public String update(@PathVariable(name = "id") Long id, @ModelAttribute("product") Product productRequest) {
-        Product product = productService.update(id, productRequest);
+        Product product = productServiceImpl.update(id, productRequest);
 
         return "redirect:/products/" + product.getId() + "/edit";
     }
 
     @DeleteMapping("/products/{id}")
     public String destroy(@PathVariable(name = "id") Long id) {
-        productService.destroy(id);
+        productServiceImpl.destroy(id);
 
         return "redirect:/products";
     }

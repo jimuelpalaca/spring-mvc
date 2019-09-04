@@ -2,6 +2,7 @@ package com.spring.mvc.service;
 
 import com.spring.mvc.model.Product;
 import com.spring.mvc.repository.ProductRepository;
+import com.spring.mvc.service.interfaces.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.time.Instant;
 import java.util.List;
 
 @Service
-public class ProductService implements Resource {
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;

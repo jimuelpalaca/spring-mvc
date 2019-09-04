@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<a th:href="@{users/create}">Create New User</a>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.name}">
+        <td th:text="${user.username}">
+        <td th:text="${user.email}">
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
