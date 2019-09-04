@@ -3,6 +3,7 @@ package com.spring.mvc.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -19,4 +20,7 @@ public class User implements Model {
     private String email;
 
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<Product> products;
 }

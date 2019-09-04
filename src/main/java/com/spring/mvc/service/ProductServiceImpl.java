@@ -1,7 +1,9 @@
 package com.spring.mvc.service;
 
 import com.spring.mvc.model.Product;
+import com.spring.mvc.model.User;
 import com.spring.mvc.repository.ProductRepository;
+import com.spring.mvc.repository.UserRepository;
 import com.spring.mvc.service.interfaces.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<Product> all() {
@@ -36,7 +41,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product store(Product product) {
         Instant now = Instant.now();
+        Long id = new Long(1);
+        User user = userRepository.findById(id).get();
 
+        product.setUser(user);
         product.setCreated_at(now);
         product.setUpdated_at(now);
         productRepository.save(product);

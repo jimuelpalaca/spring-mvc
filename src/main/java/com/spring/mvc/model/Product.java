@@ -1,9 +1,11 @@
 package com.spring.mvc.model;
 
 import lombok.Data;
+import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,4 +23,7 @@ public class Product implements Model {
     private Instant created_at;
 
     private Instant updated_at;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 }
