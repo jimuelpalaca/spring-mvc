@@ -9,7 +9,7 @@ import java.time.Instant;
 import java.util.List;
 
 @Service
-public class ProductService implements ResourceInterface {
+public class ProductService implements Resource {
 
     @Autowired
     private ProductRepository productRepository;

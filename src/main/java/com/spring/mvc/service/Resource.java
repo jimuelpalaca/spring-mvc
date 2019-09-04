@@ -4,7 +4,7 @@ import com.spring.mvc.model.Product;
 
 import java.util.List;
 
-public interface ResourceInterface {
+public interface Resource {
 
     List<Product> all();
 
