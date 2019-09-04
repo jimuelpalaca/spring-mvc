@@ -29,12 +29,8 @@ public class ProductsController {
     }
 
     @GetMapping("/products/create")
-    public String create(Model model) {
-        Product product = new Product();
-
-        model.addAttribute("product", product);
-
-        return "products/create";
+    public ModelAndView create(Model model) {
+        return new ModelAndView("/products/create", "product", new Product());
     }
 
     @PostMapping("/products")
@@ -46,9 +42,7 @@ public class ProductsController {
 
     @GetMapping("/products/{id}/edit")
     public ModelAndView edit(@PathVariable(name = "id") Long id) {
-        Product product = productService.findById(id);
-
-        return new ModelAndView("products/edit").addObject(product);
+        return new ModelAndView("products/edit", "product", productService.findById(id));
     }
 
     @PutMapping("/products/{id}")
